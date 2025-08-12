@@ -1,13 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSmartMap Demo</title>
+    <title>DSmartMap</title>
+
+    <!-- CSS của Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: #0078D7;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        #map {
+            height: 90vh; /* chiều cao bản đồ chiếm 90% màn hình */
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+
+<header>
     <h1>Chào mừng đến với DSmartMap!</h1>
-    <p>Đây là website demo chạy trên GitHub Pages.</p>
+    <p>Bản đồ demo chạy trên GitHub Pages</p>
+</header>
+
+<div id="map"></div>
+
+<!-- JS của Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Khởi tạo bản đồ tại vị trí Hà Nội
+    var map = L.map('map').setView([21.0285, 105.8542], 13);
+
+    // Thêm tile layer từ OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Thêm marker
+    var marker = L.marker([21.0285, 105.8542]).addTo(map)
+        .bindPopup('<b>Hà Nội</b><br>Thủ đô Việt Nam.')
+        .openPopup();
+</script>
+
 </body>
 </html>
+
